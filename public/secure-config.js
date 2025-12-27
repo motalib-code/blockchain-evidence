@@ -1,7 +1,7 @@
-// Secure Configuration - No Exposed Credentials
+// Secure Configuration - Updated with Supabase credentials
 const config = {
     // Demo mode for testing
-    DEMO_MODE: true,
+    DEMO_MODE: false, // Set to false for production
     
     // Network configuration
     NETWORK_ID: 11155111, // Sepolia testnet
@@ -11,7 +11,11 @@ const config = {
     // Contract addresses (update after deployment)
     CONTRACT_ADDRESS: '0x0000000000000000000000000000000000000000',
     
-    // IPFS configuration (use environment variables in production)
+    // Supabase configuration
+    SUPABASE_URL: 'https://vkqswulxmuuganmjqumb.supabase.co',
+    SUPABASE_ANON_KEY: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZrcXN3dWx4bXV1Z2FubWpxdW1iIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjY3ODc3OTQsImV4cCI6MjA4MjM2Mzc5NH0.LsZKX2aThok0APCNXr9yQ8FnuJnIw6v8RsTIxVLFB4U',
+    
+    // IPFS configuration (optional - using Supabase Storage instead)
     PINATA_API_KEY: '',
     PINATA_SECRET_KEY: '',
     PINATA_JWT: '',
