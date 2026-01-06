@@ -1,43 +1,92 @@
 # 🔐 EVID-DGC - Blockchain Evidence Management System
 
-**Secure admin-controlled evidence management system with role-based access.**
+**Secure admin-controlled evidence management system with role-based access control.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)](https://nodejs.org/)
+[![Supabase](https://img.shields.io/badge/Database-Supabase-green)](https://supabase.com/)
+[![Deployment](https://img.shields.io/badge/Deploy-Render-blue)](https://render.com/)
 
 ## ✨ Features
 
 - 🔒 **Admin-Only User Management** - Secure user creation by administrators
-- 👥 **8 User Roles** - Complete role-based access control
+- 👥 **8 User Roles** - Complete role-based access control system
 - 🧪 **Test User System** - Create and login as test users for development
-- 📊 **Admin Dashboard** - Comprehensive system oversight
-- 💾 **Database Storage** - Supabase PostgreSQL backend
-- 📱 **Modern UI** - Professional responsive design
+- 📊 **Admin Dashboard** - Comprehensive system oversight and management
+- 💾 **Database Storage** - Supabase PostgreSQL backend with RLS
+- 📱 **Modern UI** - Professional responsive design with accessibility
+- 🔐 **Wallet Integration** - MetaMask blockchain authentication
+- 📧 **Email Authentication** - Traditional email/password login option
+- 🔍 **Audit Logging** - Complete activity tracking and compliance
+- 🌐 **Multi-Platform** - Deploy on Render, Vercel, or Netlify
+
+## 📚 Documentation
+
+### Quick Links
+- 🚀 [Quick Start](#-quick-start)
+- 📖 [Complete Documentation](#-complete-documentation)
+- 🔧 [API Reference](docs/API_DOCUMENTATION.md)
+- 👥 [User Roles Guide](docs/USER_ROLES.md)
+- 🚨 [Troubleshooting](docs/TROUBLESHOOTING.md)
+- 🤝 [Contributing](CONTRIBUTING.md)
+
+### Complete Documentation
+
+| Topic | Description | Link |
+|-------|-------------|------|
+| **Environment Setup** | Configure .env variables and Supabase | [📄 Environment Setup](docs/ENVIRONMENT_SETUP.md) |
+| **Blockchain Config** | Network setup and MetaMask configuration | [⛓️ Blockchain Setup](docs/BLOCKCHAIN_SETUP.md) |
+| **Local Development** | Development environment and workflow | [💻 Local Development](docs/LOCAL_DEVELOPMENT.md) |
+| **Deployment Guide** | Deploy to Render, Vercel, or Netlify | [🚀 Deployment](docs/DEPLOYMENT.md) |
+| **API Documentation** | Complete API reference and examples | [📡 API Docs](docs/API_DOCUMENTATION.md) |
+| **User Roles** | Roles, permissions, and access control | [👤 User Roles](docs/USER_ROLES.md) |
+| **Troubleshooting** | Common issues and solutions | [🔧 Troubleshooting](docs/TROUBLESHOOTING.md) |
+| **Contributing** | How to contribute to the project | [🤝 Contributing](CONTRIBUTING.md) |
 
 ## 🚀 Quick Start
 
+### Prerequisites
+- **Node.js** (v16 or higher)
+- **MetaMask** browser extension
+- **Supabase** account
 
-Before starting to work on my project, Go Through to the https://github.com/Gooichand/blockchain-evidence/blob/main/blockchain_evidence_contributor_guide.pdf 
+### 1. Environment Setup
+```bash
+# Clone repository
+git clone https://github.com/Gooichand/blockchain-evidence.git
+cd blockchain-evidence
 
-### 1. Database Setup
-```sql
--- Run database-schema.sql in Supabase SQL Editor
--- Then run setup-first-admin.sql with your wallet address
+# Install dependencies
+npm install
+
+# Setup environment variables
+cp .env.example .env
+# Edit .env with your Supabase credentials
 ```
 
-### 2. Start Application
+### 2. Database Setup
+```sql
+-- Run in Supabase SQL Editor:
+-- 1. Execute database-schema.sql
+-- 2. Execute setup-first-admin.sql with your wallet address
+```
+
+### 3. Start Application
 ```bash
-# Backend API server
-npm install
+# Full system (API + Frontend)
 npm start
 
-# Or frontend only
-cd public
-python -m http.server 8080
+# Frontend only (development)
+cd public && python -m http.server 8080
 ```
 
-### 3. Access System
+### 4. Access System
 ```
-http://localhost:3001  # Full system with API
-http://localhost:8080  # Frontend only
+Full System: http://localhost:3001
+Frontend Only: http://localhost:8080
 ```
+
+> 📚 **Need detailed setup?** See [Local Development Guide](docs/LOCAL_DEVELOPMENT.md)
 
 ## 📁 Project Structure
 
@@ -58,16 +107,18 @@ http://localhost:8080  # Frontend only
 
 ## 👥 User Roles
 
-| Role | Access Level | Self-Register |
-|------|-------------|---------------|
-| 👁️ **Public Viewer** | View public cases | ✅ Yes |
-| 🕵️ **Investigator** | Create and manage cases | ✅ Yes |
-| 🔬 **Forensic Analyst** | Analyze evidence | ✅ Yes |
-| ⚖️ **Legal Professional** | Legal review | ✅ Yes |
-| 🏛️ **Court Official** | Court proceedings | ✅ Yes |
-| 📋 **Evidence Manager** | Manage evidence lifecycle | ✅ Yes |
-| 🔍 **Auditor** | System auditing | ✅ Yes |
-| 👑 **Administrator** | Full system access | ❌ Admin-only |
+| Role | Access Level | Self-Register | Key Permissions |
+|------|-------------|---------------|----------------|
+| 👁️ **Public Viewer** | View public cases | ✅ Yes | Browse public information |
+| 🕵️ **Investigator** | Create and manage cases | ✅ Yes | Case creation, evidence upload |
+| 🔬 **Forensic Analyst** | Analyze evidence | ✅ Yes | Technical analysis, reports |
+| ⚖️ **Legal Professional** | Legal review | ✅ Yes | Legal documentation, case review |
+| 🏛️ **Court Official** | Court proceedings | ✅ Yes | Judicial processes, scheduling |
+| 📋 **Evidence Manager** | Manage evidence lifecycle | ✅ Yes | Chain of custody, storage |
+| 🔍 **Auditor** | System auditing | ✅ Yes | Compliance, audit reports |
+| 👑 **Administrator** | Full system access | ❌ Admin-only | User management, system config |
+
+> 📚 **Detailed permissions:** See [User Roles Documentation](docs/USER_ROLES.md)
 
 ## 📊 Analytics & Monitoring
 
@@ -159,15 +210,40 @@ cd public && python -m http.server 8080  # Frontend only
 
 ## 📊 API Endpoints
 
-### Public
-- `GET /api/health` - Health check
-- `GET /api/user/:wallet` - Get user info
+### Public Endpoints
+- `GET /api/health` - System health check
+- `GET /api/user/:wallet` - Get user information by wallet address
 
-### Admin-Only
-- `POST /api/admin/create-user` - Create regular user
-- `POST /api/admin/create-admin` - Create admin user
-- `POST /api/admin/delete-user` - Soft delete user
-- `POST /api/admin/users` - Get all users
+### Admin-Only Endpoints
+- `POST /api/admin/create-user` - Create regular user account
+- `POST /api/admin/create-admin` - Create admin user account
+- `POST /api/admin/delete-user` - Soft delete user account
+- `POST /api/admin/users` - Get all system users
+
+> 📡 **Complete API docs:** See [API Documentation](docs/API_DOCUMENTATION.md)
+
+## 🌐 Deployment Options
+
+### Supported Platforms
+- **Render** (Recommended) - Free tier with auto-deploy
+- **Vercel** - Serverless with global CDN
+- **Netlify** - Static hosting with edge functions
+
+### Quick Deploy
+```bash
+# Render (recommended)
+1. Connect GitHub repository
+2. Set environment variables
+3. Deploy automatically
+
+# Vercel
+vercel --prod
+
+# Netlify
+netlify deploy --prod
+```
+
+> 🚀 **Deployment guide:** See [Deployment Documentation](docs/DEPLOYMENT.md)
 
 ## 💰 Cost: $0
 
@@ -186,13 +262,41 @@ cd public && python -m http.server 8080  # Frontend only
 - ✅ Rate limiting on API endpoints
 - ✅ Soft delete only (data preserved)
 
-## 📞 Support
+## 📞 Support & Community
 
-For setup or usage questions:
-1. Check database connection in Supabase
-2. Verify environment variables are set
-3. Review browser console for errors
-4. Check admin_actions table for audit logs
+### Getting Help
+- 📚 **Documentation**: Check [docs/](docs/) directory
+- 🐛 **Issues**: Report bugs on [GitHub Issues](https://github.com/Gooichand/blockchain-evidence/issues)
+- 💬 **Discussions**: Join [GitHub Discussions](https://github.com/Gooichand/blockchain-evidence/discussions)
+- 🚑 **Troubleshooting**: See [Troubleshooting Guide](docs/TROUBLESHOOTING.md)
+
+### Quick Diagnostics
+1. **Database**: Check Supabase connection and credentials
+2. **Environment**: Verify all environment variables are set
+3. **Browser**: Check console for JavaScript errors
+4. **Network**: Test API endpoints with `/api/health`
+5. **Audit**: Review `admin_actions` table for system logs
+
+### Contributing
+We welcome contributions! See [Contributing Guide](CONTRIBUTING.md) for:
+- Code style guidelines
+- Development workflow
+- Pull request process
+- Testing requirements
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🚀 Roadmap
+
+- [ ] Smart contract integration for evidence hashing
+- [ ] Multi-signature admin operations
+- [ ] Advanced audit reporting
+- [ ] Mobile application
+- [ ] API rate limiting dashboard
+- [ ] Evidence encryption at rest
+- [ ] Integration with external forensic tools
 
 ---
 
